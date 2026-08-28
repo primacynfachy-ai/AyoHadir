@@ -1,42 +1,40 @@
 # AyoHadir
 
-AyoHadir adalah aplikasi absensi berbasis QR yang akan dibangun dengan Flutter untuk Android. Backend utama direncanakan menggunakan Supabase.
+Aplikasi absensi Android berbasis Flutter.
 
-## Status
+## Tujuan repository
 
-Repository ini adalah fondasi project. Fitur produk akan ditambahkan bertahap setelah fondasi dan build tervalidasi.
+Repository ini adalah sumber kode utama AyoHadir. Pengembangan dilakukan bertahap agar setiap fitur mudah diuji dan tidak saling merusak.
 
-## Struktur utama
+## Teknologi
+
+- Flutter / Dart
+- Material 3
+- Target utama: Android
+- Backend yang akan diintegrasikan: Supabase
+
+## Struktur
 
 ```text
 lib/
-├── core/
-│   ├── constants/
-│   ├── models/
-│   ├── routing/
-│   ├── services/
-│   ├── theme/
-│   └── widgets/
-├── features/
-│   ├── auth/
-│   ├── home/
-│   ├── qr/
-│   ├── attendance/
-│   ├── history/
-│   └── profile/
-├── app.dart
-└── main.dart
+├── core/       # tema, konstanta, routing, service, model, widget bersama
+└── features/   # modul fitur aplikasi
 ```
 
-## Pengembangan dengan AI
+Fitur utama akan dibangun sebagai modul terpisah, antara lain autentikasi, QR, absensi, GPS, riwayat, dan profil.
 
-Coding agent harus membaca `AGENTS.md` sebelum mengubah kode. Kerjakan fitur secara bertahap, jangan membuat ulang project tanpa alasan, dan jangan memasukkan secret ke repository.
+## Aturan pengembangan
 
-Repository ini dapat digunakan sebagai sumber kode dari coding agent yang terhubung ke GitHub. Setiap perubahan penting harus tetap dapat dibangun dan diuji.
+- Gunakan null safety dan penamaan Dart konvensional.
+- Pertahankan pemisahan antar-feature.
+- Jangan menaruh secret, password, atau Supabase service-role key di source code.
+- Jangan menambahkan dependency tanpa alasan yang jelas.
+- Jangan mengubah file yang tidak berkaitan dengan tugas.
+- Perubahan besar harus dilakukan bertahap dan dapat diperiksa melalui Git.
 
 ## Validasi
 
-Pemeriksaan utama:
+Perubahan dianggap siap apabila pemeriksaan berikut lulus:
 
 ```text
 flutter pub get
@@ -46,16 +44,8 @@ flutter test
 flutter build apk --release
 ```
 
-GitHub Actions menjalankan pemeriksaan dan build APK secara otomatis pada push ke `main` dan Pull Request.
+GitHub Actions digunakan untuk menjalankan validasi dan build APK secara otomatis.
 
-## Keamanan
+## Pengembangan dengan AI
 
-Jangan commit:
-
-- Supabase service-role key
-- access token
-- password
-- private API key
-- credential signing Android
-
-Gunakan GitHub Secrets atau mekanisme secret management yang sesuai saat konfigurasi deployment/build.
+Coding agent harus membaca `AGENTS.md` sebelum mengubah kode. Kerjakan satu fitur atau satu perbaikan dalam satu perubahan yang jelas, kemudian validasi hasilnya.
