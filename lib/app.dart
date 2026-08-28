@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 
+import 'core/constants/app_constants.dart';
+import 'core/theme/app_theme.dart';
+
 class AyoHadirApp extends StatelessWidget {
   const AyoHadirApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'AyoHadir',
+      title: AppConstants.appName,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        brightness: Brightness.light,
-        colorSchemeSeed: const Color(0xFF2563EB),
-        scaffoldBackgroundColor: const Color(0xFFF8FAFC),
-      ),
+      theme: AppTheme.light(),
       home: const _FoundationPage(),
     );
   }
@@ -25,6 +23,9 @@ class _FoundationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(AppConstants.appName),
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -38,7 +39,7 @@ class _FoundationPage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               Text(
-                'AyoHadir',
+                AppConstants.appName,
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
